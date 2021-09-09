@@ -148,17 +148,19 @@ def main():
                 BULLET_HIT_SOUND.play()
 
         winner_text = ""
-        if red_health <= 0:
+        if red_health < 0:
             winner_text = "Yellow Wins!"
 
-        if yellow_health <= 0:
+        if yellow_health < 0:
             winner_text = "Red Wins!"
 
         if winner_text != "":
+            EXPLOSION_SOUND.play()
+            pygame.time.delay(500)
             winner(winner_text)
             break
 
-        keys_pressed = pygame.key.get_pressed()
+        keys_pressed = pygame.key.get_pressed() # is used to check whether key stays being pressed
         yellow_movement(keys_pressed, yellow)
         red_movement(keys_pressed, red)
 
